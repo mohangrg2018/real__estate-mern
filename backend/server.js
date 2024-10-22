@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import { connectDB } from "./config/db.js";
+import errorHandler from "./utils/error.js";
 
 //app cofiguration
 const app = express();
@@ -17,6 +18,9 @@ app.use(express.json());
 //routes
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
+
+// Use the global error handler
+app.use(errorHandler);
 
 //server
 app.listen(process.env.PORT, () => {
