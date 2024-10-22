@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import userRouter from "./routes/user.route.js";
 import { connectDB } from "./config/db.js";
 
 //app cofiguration
@@ -8,12 +9,12 @@ dotenv.config();
 
 //database connection
 connectDB();
-console.log(process.env.MONGODB_URL);
 
 //middlewares
 app.use(express.json());
 
 //routes
+app.use("/api/users", userRouter);
 
 //server
 app.listen(process.env.PORT, () => {
