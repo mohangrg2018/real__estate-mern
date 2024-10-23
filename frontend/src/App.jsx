@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import SignupForm from "./pages/SignupForm";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/signup" element={<SignupForm />} />
         <Route exact path="/notfound" element={<NotFound />} />
       </Routes>
     </>

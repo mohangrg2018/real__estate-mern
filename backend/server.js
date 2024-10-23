@@ -1,28 +1,25 @@
 import express from "express";
 import dotenv from "dotenv";
-import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js";
 import { connectDB } from "./config/db.js";
-import errorHandler from "./utils/error.js";
+import authRouter from "./routes/auth.route.js";
+import cors from "cors";
 
-//app cofiguration
-const app = express();
+//app configuration
 dotenv.config();
-
-//database connection
-connectDB();
+const app = express();
+const port = process.env.PORT || 3000;
 
 //middlewares
 app.use(express.json());
+app.use(cors());
+
+//db config
+connectDB();
 
 //routes
-app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 
-// Use the global error handler
-app.use(errorHandler);
-
-//server
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+//listen to requests
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
